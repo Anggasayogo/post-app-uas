@@ -40,17 +40,21 @@ class Transaksi extends Controller
      */
     public function store(Request $request)
     {
-        $data = [
-            'nama_transaksi' => $request->transaksi,
-            'tgl_transaksi' => $request->tanggal_transaksi,
-            'harga' => $request->harga,
-            'qty' => $request->qty,
-            'id_baranag' => $request->barang,
-            'diskon' => $request->disc,
-            'id_pelanggan' => $request->pelanggan
-        ];
-        DB::table('transaskis')->insert($data);
-        return redirect('admin/transaksi')->with('message', 'New Transaksi Created success aded!');
+        if ($request->barang) {
+            $harga = DB::table('barangs')->where('id_barang', '=', $request->barang)->first();
+            $data = [
+                'nama_transaksi' => $request->transaksi,
+                'tgl_transaksi' => $request->tanggal_transaksi,
+                'harga' => $harga->harga_barang - $harga->harga_barang * $request->disc / 100,
+                'qty' => $request->qty,
+                'id_baranag' => $request->barang,
+                'diskon' => $request->disc,
+                'id_pelanggan' => $request->pelanggan
+            ];
+
+            DB::table('transaskis')->insert($data);
+            return redirect('admin/transaksi')->with('message', 'New Transaksi Created success aded!');
+        }
     }
 
     /**

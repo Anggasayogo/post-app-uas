@@ -18,10 +18,6 @@
                                     <label for="exampleInputPassword1">Tanggal Transaksi</label>
                                     <input name="tanggal_transaksi" type="date" class="form-control" id="exampleInputPassword1" placeholder="Eneter Tanggal">
                                 </div>
-                                <div class="form-group">
-                                    <label for="exampleInputPassword1">Harga</label>
-                                    <input name="harga" type="number" class="form-control" id="exampleInputPassword1" placeholder="Eneter Harga">
-                                </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">

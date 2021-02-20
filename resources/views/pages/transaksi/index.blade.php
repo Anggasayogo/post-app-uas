@@ -25,7 +25,7 @@
                                 <td>{{$loop->iteration}}</td>
                                 <td>{{ $row->nama_transaksi }}</td>
                                 <td>{{ $row->tgl_transaksi }}</td>
-                                <td>{{ $row->harga }}</td>
+                                <td> Rp,{{ number_format($row->harga) }}</td>
                                 <td>{{ $row->qty }}</td>
                                 <td>{{ $row->nama_barang }}</td>
                                 <td>{{ $row->diskon }}</td>
