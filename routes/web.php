@@ -6,6 +6,8 @@ use App\Http\Controllers\Dashboard;
 use App\Http\Controllers\Pelanggan;
 use App\Http\Controllers\Barang;
 use App\Http\Controllers\Transaksi;
+use App\Http\Controllers\Category;
+use App\Http\Controllers\Satuan;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,8 +45,17 @@ Route::middleware('Autenticate')->prefix('admin')->group(function () {
     Route::get('edit/barang/{id}', [Barang::class, 'edit']);
     Route::post('update/barang', [Barang::class, 'update']);
 
+    // Catgeory
+    Route::get('/category', [Category::class, 'index']);
+    Route::post('add/category', [Category::class, 'store']);
+
+    // Satuan
+    Route::get('/satuan', [Satuan::class, 'index']);
+    Route::post('add/satuan', [Satuan::class, 'store']);
+
     // Transaksi
     Route::get('/transaksi', [Transaksi::class, 'index']);
+    Route::get('/detail/transaksi/{id}', [Transaksi::class, 'show']);
     Route::get('/add/transaksi', [Transaksi::class, 'create']);
     Route::post('store/transaksi', [Transaksi::class, 'store']);
     Route::get('destroy/transaksi/{id}', [Transaksi::class, 'destroy']);

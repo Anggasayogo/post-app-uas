@@ -28,7 +28,9 @@ class Barang extends Controller
      */
     public function create()
     {
-        //
+        $satuan = DB::table('satuans')->get();
+        $category = DB::table('categories')->get();
+        return view('pages/barang/add', ['satuan' => $satuan, 'category' => $category]);
     }
 
     /**
@@ -39,7 +41,18 @@ class Barang extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $pelanggan = $request->pelanggan;
+        $harga = $request->harga;
+        $satuan = $request->satuan;
+        $category = $request->category;
+        $data = [
+            'nama_barang' => $pelanggan,
+            'category_id' => $category,
+            'satuan_id' => $satuan,
+            'harga_barang' => $harga,
+        ];
+        DB::table('barangs')->insert($data);
+        return redirect('admin/barang')->with('message', 'Barang Baru success aded!');
     }
 
     /**

@@ -13,6 +13,7 @@
                                 <th>Nama</th>
                                 <th>Catgeory</th>
                                 <th>Satuan</th>
+                                <th>Harga</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -23,9 +24,9 @@
                                 <td>{{ $row->nama_barang }}</td>
                                 <td>{{ $row->nama_category }}</td>
                                 <td>{{ $row->nama_satuan }}</td>
+                                <td>Rp,{{ number_format($row->harga_barang) }}</td>
                                 <td>
-                                    <a href="{{ url('admin/edit/barang') }}/{{ $row->id_barang }}" class="btn btn-warning fa fa-edit"></a>
-                                    <a href="{{ url('admin/destroy/barang') }}/{{ $row->id_barang }}" class="btn btn-danger fa fa-trash"></a>
+                                    <a href="{{ url('admin/edit/barang') }}/{{ $row->id_barang }}" class="btn btn-warning fa fa-print"></a>
                                 </td>
                             </tr>
                             @endforeach

@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class Transaksi extends Controller
+class Satuan extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,11 +14,7 @@ class Transaksi extends Controller
      */
     public function index()
     {
-        $data = DB::table('barangs')
-            ->join('satuans', 'barangs.satuan_id', '=', 'satuans.id_satuan')
-            ->join('categories', 'barangs.category_id', '=', 'categories.id_category')
-            ->get();
-        return view('pages/transaksi/index', ['data' => $data]);
+        return view('pages/satuan/index');
     }
 
     /**
@@ -39,7 +35,9 @@ class Transaksi extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = ['nama_satuan' => $request->satuan];
+        DB::table('satuans')->insert($data);
+        return redirect('admin/barang')->with('message', 'Satuans success aded!');
     }
 
     /**
@@ -50,11 +48,7 @@ class Transaksi extends Controller
      */
     public function show($id)
     {
-        $data = DB::table('barangs')
-            ->join('satuans', 'barangs.satuan_id', '=', 'satuans.id_satuan')
-            ->join('categories', 'barangs.category_id', '=', 'categories.id_category')
-            ->where('barangs.id_barang', '=', $id)->first();
-        return view('pages/transaksi/transaksi', ['data' => $data]);
+        //
     }
 
     /**
