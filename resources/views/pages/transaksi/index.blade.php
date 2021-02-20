@@ -3,6 +3,15 @@
 <div class="row">
     <div class="col-12">
         <div class="card">
+            @if(session('message'))
+            <script>
+                Swal.fire(
+                    'Good job!',
+                    '{{ session("message") }}',
+                    'success'
+                )
+            </script>
+            @endif
             <div class="card-body">
                 <div class="table-responsive">
                     <table id="zero_config" class="table table-striped table-bordered no-wrap">
@@ -28,10 +37,10 @@
                                 <td> Rp,{{ number_format($row->harga) }}</td>
                                 <td>{{ $row->qty }}</td>
                                 <td>{{ $row->nama_barang }}</td>
-                                <td>{{ $row->diskon }}</td>
+                                <td>{{ $row->diskon }}%</td>
                                 <td>{{ $row->nama_pelanggan }}</td>
                                 <td>
-                                    <a href="{{ url('admin/edit/pelanggan') }}/" class="btn btn-warning fa fa-print"></a>
+                                    <a href="{{ url('admin/generatereport') }}/{{ $row->id_transaksi }}" class="btn btn-warning fa fa-print"></a>
                                 </td>
                             </tr>
                             @endforeach
@@ -42,10 +51,6 @@
                             <a class="page-link" href="#" tabindex="-1">Previous</a>
                         </li>
                         <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
-                        </li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
                         <li class="page-item">
                             <a class="page-link" href="#">Next</a>
                         </li>

@@ -74,7 +74,10 @@ class Barang extends Controller
      */
     public function edit($id)
     {
-        //
+        $satuan = DB::table('satuans')->get();
+        $category = DB::table('categories')->get();
+        $detail = DB::table('barangs')->where('id_barang', '=', $id)->first();
+        return view('pages/barang/edit', ['satuan' => $satuan, 'category' => $category, 'detail' => $detail]);
     }
 
     /**
@@ -84,9 +87,21 @@ class Barang extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $pelanggan = $request->pelanggan;
+        $harga = $request->harga;
+        $satuan = $request->satuan;
+        $category = $request->category;
+        $data = [
+            'nama_barang' => $pelanggan,
+            'category_id' => $category,
+            'satuan_id' => $satuan,
+            'harga_barang' => $harga,
+        ];
+        $id = $request->id;
+        DB::table('barangs')->where('id_barang', '=', $id)->update($data);
+        return redirect('admin/barang')->with('message', 'Barang berhasil di Update!');
     }
 
     /**
@@ -97,6 +112,7 @@ class Barang extends Controller
      */
     public function destroy($id)
     {
-        //
+        DB::table('barangs')->where('id_barang', '=', $id)->delete();
+        return redirect('admin/barang')->with('message', 'Barang success deleted!');
     }
 }

@@ -3,6 +3,15 @@
 <div class="row">
     <div class="col-12">
         <div class="card">
+            @if(session('message'))
+            <script>
+                Swal.fire(
+                    'Good job!',
+                    '{{ session("message") }}',
+                    'success'
+                )
+            </script>
+            @endif
             <div class="card-body">
                 <a href="{{ url('admin/add/pelanggan') }}" class="btn btn-primary fa fa-plus mb-2"></a>
                 <div class="table-responsive">

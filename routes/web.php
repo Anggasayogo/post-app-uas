@@ -61,4 +61,5 @@ Route::middleware('Autenticate')->prefix('admin')->group(function () {
     Route::get('destroy/transaksi/{id}', [Transaksi::class, 'destroy']);
     Route::get('edit/transaksi/{id}', [Transaksi::class, 'edit']);
     Route::post('update/transaksi', [Transaksi::class, 'update']);
+    Route::get('/generatereport/{id}', [Transaksi::class, 'repport']);
 });

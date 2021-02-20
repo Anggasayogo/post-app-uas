@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use PDF;
 
 class Transaksi extends Controller
 {
@@ -104,5 +105,17 @@ class Transaksi extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function repport(Request $request, $id)
+    {
+        $data = $data = DB::table('transaskis')
+            ->join('barangs', 'transaskis.id_baranag', '=', 'barangs.id_barang')
+            ->join('pelanggans', 'transaskis.id_pelanggan', '=', 'pelanggans.id_pelanggan')
+            ->where('transaskis.id_transaksi', '=', $id)->first();
+
+        $pdf = PDF::loadView('mypdf', ['row' => $data]);
+
+        return $pdf->download('report-transasksi.pdf');
     }
 }
