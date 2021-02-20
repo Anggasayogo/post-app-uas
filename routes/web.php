@@ -55,7 +55,7 @@ Route::middleware('Autenticate')->prefix('admin')->group(function () {
 
     // Transaksi
     Route::get('/transaksi', [Transaksi::class, 'index']);
-    Route::get('/detail/transaksi/{id}', [Transaksi::class, 'show']);
+    Route::get('add/transaksi/{id}', [Transaksi::class, 'show']);
     Route::get('/add/transaksi', [Transaksi::class, 'create']);
     Route::post('store/transaksi', [Transaksi::class, 'store']);
     Route::get('destroy/transaksi/{id}', [Transaksi::class, 'destroy']);

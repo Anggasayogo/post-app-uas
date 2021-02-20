@@ -233,7 +233,6 @@
                         <li class="list-divider"></li>
                         <li class="nav-small-cap"><span class="hide-menu">Applications</span></li>
 
-                        <li class="nav-small-cap"><span class="hide-menu">System</span></li>
                         <li class="sidebar-item"> <a class="sidebar-link has-arrow" href="javascript:void(0)" aria-expanded="false"><i data-feather="package" class="feather-icon"></i><span class="hide-menu">Barang</span></a>
                             <ul aria-expanded="false" class="collapse  first-level base-level-line">
                                 <li class="sidebar-item"><a href="{{ url('admin/barang') }}" class="sidebar-link"><span class="hide-menu">Barang
@@ -249,7 +248,18 @@
                         </li>
 
                         <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="{{ url('/admin/pelanggan') }}" aria-expanded="false"><i data-feather="users" class="feather-icon"></i><span class="hide-menu">Pelanggan</span></a></li>
-                        <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="{{ url('/admin/transaksi') }}" aria-expanded="false"><i data-feather="shopping-bag" class="feather-icon"></i><span class="hide-menu">Transaksi</span></a></li>
+
+
+                        <li class="sidebar-item"> <a class="sidebar-link has-arrow" href="javascript:void(0)" aria-expanded="false"><i data-feather="shopping-bag" class="feather-icon"></i><span class="hide-menu">Transaksi</span></a>
+                            <ul aria-expanded="false" class="collapse  first-level base-level-line">
+                                <li class="sidebar-item"><a href="{{ url('/admin/transaksi') }}" class="sidebar-link"><span class="hide-menu">Transaksi
+                                        </span></a>
+                                </li>
+                                <li class="sidebar-item"><a href="{{ url('admin/add/transaksi') }}" class="sidebar-link"><span class="hide-menu">Creat transaksi
+                                        </span></a>
+                                </li>
+                            </ul>
+                        </li>
 
                         <li class="list-divider"></li>
                         <li class="nav-small-cap"><span class="hide-menu">System</span></li>

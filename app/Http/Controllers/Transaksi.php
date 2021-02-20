@@ -14,10 +14,9 @@ class Transaksi extends Controller
      */
     public function index()
     {
-        $data = DB::table('barangs')
-            ->join('satuans', 'barangs.satuan_id', '=', 'satuans.id_satuan')
-            ->join('categories', 'barangs.category_id', '=', 'categories.id_category')
-            ->get();
+        $data = DB::table('transaskis')
+            ->join('barangs', 'transaskis.id_baranag', '=', 'barangs.id_barang')
+            ->join('pelanggans', 'transaskis.id_pelanggan', '=', 'pelanggans.id_pelanggan')->get();
         return view('pages/transaksi/index', ['data' => $data]);
     }
 
@@ -28,7 +27,9 @@ class Transaksi extends Controller
      */
     public function create()
     {
-        //
+        $pelanggan = DB::table('pelanggans')->get();
+        $barang = DB::table('barangs')->get();
+        return view('pages/transaksi/transaksi', ['barang' => $barang, 'pelanggan' => $pelanggan]);
     }
 
     /**
@@ -39,7 +40,17 @@ class Transaksi extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = [
+            'nama_transaksi' => $request->transaksi,
+            'tgl_transaksi' => $request->tanggal_transaksi,
+            'harga' => $request->harga,
+            'qty' => $request->qty,
+            'id_baranag' => $request->barang,
+            'diskon' => $request->disc,
+            'id_pelanggan' => $request->pelanggan
+        ];
+        DB::table('transaskis')->insert($data);
+        return redirect('admin/transaksi')->with('message', 'New Transaksi Created success aded!');
     }
 
     /**
@@ -50,10 +61,10 @@ class Transaksi extends Controller
      */
     public function show($id)
     {
-        $data = DB::table('barangs')
-            ->join('satuans', 'barangs.satuan_id', '=', 'satuans.id_satuan')
-            ->join('categories', 'barangs.category_id', '=', 'categories.id_category')
-            ->where('barangs.id_barang', '=', $id)->first();
+        $data = DB::table('transaksis')
+            ->join('barangs', 'transaksis.id_barananag', '=', 'barangs.id_barang')
+            ->join('pelanggans', 'transaksis.id_pelanggan', '=', 'pelanggans.id_pelanggan')->get();
+        dd($data);
         return view('pages/transaksi/transaksi', ['data' => $data]);
     }
 
